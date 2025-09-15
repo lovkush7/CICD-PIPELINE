@@ -58,7 +58,7 @@ jobs:
 
         with:
           scan-type: 'fs'
-          image-ref: '.'
+          scan-ref: '.'
           format: 'table'
           vuln-type: 'os,library'
           ignore-unfixed: true 
