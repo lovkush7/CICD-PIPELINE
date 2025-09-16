@@ -1,0 +1,31 @@
+name: diploy me 
+
+on:
+    push:
+        branches: ["main"]
+
+jobs: 
+    compile:
+
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: checkout code
+              uses: actions/checkout@v4
+
+            - name: setup nodejs
+              uses: actions/setup-node@v4
+              with:
+                node-version: "20"
+
+            - name: check js syntax
+              run: |
+                cd src
+                find . -name "*.js" -exec node --check {} +
+
+                    
+
+
+
+
+
