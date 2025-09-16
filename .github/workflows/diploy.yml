@@ -24,7 +24,20 @@ jobs:
                 find . -name "*.js" -exec node --check {} +
 
                     
+    gitleaks-scan:
 
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: checkout code
+              uses: actions/checkout@v4
+
+            - name: gitleaks setup
+              uses: gitleaks/gitleaks-action@v2
+
+            - name: gitleaks scan 
+              run: gitleaks detect --source . --exit-code 1
+                
 
 
 
