@@ -34,7 +34,7 @@ jobs:
               uses: gitleaks/gitleaks-action@v2
 
             - name: gitleaks scan
-              run: gitleaks detect --source . --exit code 1  
+              run: gitleaks detect --source . --exit-code 1  
 
     sonarq_setup:
         
