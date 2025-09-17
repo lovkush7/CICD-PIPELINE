@@ -76,7 +76,7 @@ jobs:
                 key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
 
             - name: install dependicies
-              run: npm ci
+              run: npm install
               
             - name: build project
               run: npm run build  
