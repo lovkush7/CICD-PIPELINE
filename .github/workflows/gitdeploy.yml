@@ -1,0 +1,57 @@
+name: github deploy
+
+on:
+    push:
+        branches: ["main"]
+
+jobs:
+    compile: 
+        runs-on: ubuntu-latest
+
+        steps: 
+            - name: checkout code
+              uses: actions/checkout@v4
+
+            - name: setup node js
+              uses: actions/setup-node@v4
+              with:
+                node-version: "20"
+
+            - name: check js syntax
+              uses: find . -name ".js" -exec node --check {} +    
+        
+
+    gitleaks_scans:
+
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: checkout code
+              uses: actions/checkout@v4
+
+            - name: gitleaks setup
+              uses: gitleaks/gitleaks-actions@v2
+
+            - name: gitleaks scan
+              uses: gitleaks detect --source . --exit code 1  
+
+    sonarq_setup:
+        
+        runs-on: ubuntu-latest
+
+        steps: 
+            - name: checkout code 
+              uses: actions/checkout@v4
+
+            - name: sonarQube scan
+              uses: SonarSource/sonarcloud-github-action@v2
+              with:
+                  args: >
+                    -Dsonar.projectKey=lovkush7_CICD-PIPELINE
+                    -Dsonar.organization=lovkush7
+              env:
+                SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
+              
+
+       
