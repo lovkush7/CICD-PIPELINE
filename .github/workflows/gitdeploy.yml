@@ -18,7 +18,7 @@ jobs:
                 node-version: "20"
 
             - name: check js syntax
-              uses: find . -name ".js" -exec node --check {} +    
+              run: find . -name ".js" -exec node --check {} +    
         
 
     gitleaks_scans:
@@ -34,7 +34,7 @@ jobs:
               uses: gitleaks/gitleaks-actions@v2
 
             - name: gitleaks scan
-              uses: gitleaks detect --source . --exit code 1  
+              run: gitleaks detect --source . --exit code 1  
 
     sonarq_setup:
         
