@@ -4,7 +4,8 @@
   "main": "src/index.js",
   "scripts": {
     "start": "nodemon .",
-    "test": "echo \"No tests yet\" && exit 0"
+    "test": "echo \"No tests yet\" && exit 0",
+    "lint": "eslint . --ext .js"
   },
   "license": "MIT",
   "type": "module",
@@ -15,6 +16,9 @@
     "express": "^5.1.0"
   },
   "devDependencies": {
+    "@eslint/js": "^9.35.0",
+    "eslint": "^9.35.0",
+    "globals": "^16.4.0",
     "nodemon": "^3.1.10"
   }
 }
