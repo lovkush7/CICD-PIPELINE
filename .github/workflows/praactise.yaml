@@ -1,0 +1,59 @@
+name: CICD SETUP
+
+on:
+    push:
+        branches: ["main"]
+
+jobs: 
+    compile:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: CHECKOUT CODE
+              uses: actions/checkout@v4
+
+            - name: SETUP NODE
+              uses: actions/setup-node@v4
+              with:
+                node-version: "20" 
+                
+                
+            - name: CHECKUP js SYNTAX
+              run: find . -name ".js" -exec node --check {} +   
+    
+
+    gitleaks_scans:
+        runs-on: ubuntu-latest
+        needs: compile
+
+        steps:
+            - name: CHECKOUT CODE
+              uses: actions/checkout@v4
+
+            - name: SETUP GITLEAKS
+              uses: gitleaks/gitleaks-action@v2
+
+            - name: gitleaks_scan
+              run: gitleaks detect --source . --exit-code 1
+                
+
+    sonarq_backend: 
+      runs-on: ubuntu-latest
+      needs: gitleaks_scans
+
+      steps: 
+        - name: CHECKOUT CODE
+          uses: actions/checkout@v4
+
+        - name: sonarQuebe scan
+          uses: SonarSource/Sonarcloud-github-action@v2
+          with:
+            projectBaseDir: day1
+            args: >
+              -Dsonar.projectkey=lovkush7_CICD-PIPELINE
+              -Dsonar.organization=lovkush7
+
+            env:
+              SONAR_TOKEN: ${{secrets.SONAR_TOKEN}}  
+                
+
