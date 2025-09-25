@@ -50,7 +50,7 @@ jobs:
         - name: sonarQuebe scan
           uses: SonarSource/Sonarcloud-github-action@v2
           with:
-            projectBaseDir: day1
+            projectBaseDir: .
             args: >
               -Dsonar.projectkey=lovkush7_CICD-PIPELINE
               -Dsonar.organization=lovkush7
