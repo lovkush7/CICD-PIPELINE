@@ -53,7 +53,7 @@ jobs:
               -Dsonar.projectkey=lovkush7_CICD-PIPELINE
               -Dsonar.organization=lovkush7
 
-            env:
+          env:
               SONAR_TOKEN: ${{secrets.SONAR_TOKEN}}  
                 
 
