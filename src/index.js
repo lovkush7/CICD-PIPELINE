@@ -6,4 +6,4 @@ app.listen(8000,()=>{
     console.log("server is running")
 })
 password=12345;
-const password = "aKJH@!92jdkslqP0#@";
+API_keys= "aKJH@!92jdkslqP0#@";
